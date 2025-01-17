@@ -2169,7 +2169,7 @@
   <body>
     <h1>Whose turn is it to take out the trash?</h1>
     <h2 id="person"></h2>
-    <h1>And next week?</h1>
+    <h1>And next three weeks?</h1>
     <h2 id="next-person"></h2>
     <h1>What's the schedule?</h1>
     <script>
@@ -2186,19 +2186,20 @@
       function getName(index) {
         switch (index) {
           case 3:
-            return "M";
-          case 2:
             return "D";
-          case 1:
+          case 2:
             return "Da";
-          case 0:
+          case 1:
             return "R";
+          case 0:
+            return "M";
         }
       }
       document.getElementById("person").innerHTML = getName(getWeekIndex() % 4);
-      document.getElementById("next-person").innerHTML = getName(
-        (getWeekIndex() + 1) % 4
-      );
+      const nextWeeks = `${getName((getWeekIndex() + 1) % 4)} &rarr; ${getName(
+        (getWeekIndex() + 2) % 4
+      )} &rarr; ${getName((getWeekIndex() + 3) % 4)}`;
+      document.getElementById("next-person").innerHTML = nextWeeks;
     </script>
     <div id="schedule">
       <div id="DIV_1">
