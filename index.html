@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Whose turn is it?</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        height: 100vh;
+        background-color: #f4f4f4;
+        margin: 10px;
+        text-align: center;
+      }
+      h1 {
+        color: #333;
+      }
+      h2 {
+        color: #0066eb;
+        font-size: xx-large;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Whose turn is it to take out the trash?</h1>
+    <h2 id="person"></h2>
+    <h1>And next week?</h1>
+    <h2 id="next-person"></h2>
+    <script>
+      function getWeekIndex(date = new Date()) {
+        const startOfYear = new Date(date.getFullYear(), 0, 1); // January 1st
+        const daysDifference = Math.floor(
+          (date - startOfYear) / (24 * 60 * 60 * 1000)
+        ); // Total days difference
+        const weekIndex = Math.ceil(
+          (daysDifference + startOfYear.getDay() + 1) / 7
+        ); // Adding day offset and calculating week
+        return weekIndex;
+      }
+      function getName(index) {
+        switch (index) {
+          case 3:
+            return "M";
+          case 2:
+            return "D";
+          case 1:
+            return "Da";
+          case 0:
+            return "R";
+        }
+      }
+      document.getElementById("person").innerHTML = getName(getWeekIndex() % 4);
+      document.getElementById("next-person").innerHTML = getName(
+        (getWeekIndex() + 1) % 4
+      );
+    </script>
+  </body>
+</html>
